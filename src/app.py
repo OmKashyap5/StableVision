@@ -7,6 +7,7 @@ from classical.optical_flow.optical_flow import optical_flow
 from classical.block_matching.block_matching import block_matching
 from classical.bitplane_matching.bitplane_matching import bitplane_matching
 from classical.l1_optimal_paths.l1_optimal_paths import l1_optimal_stabilization
+from classical.mesh_flow import mesh_flow
 
 st.title("Stable Vision")
 
@@ -16,7 +17,7 @@ uploaded_file = st.file_uploader("Upload a video", type=["mp4"])
 st.sidebar.header("Settings")
 method = st.sidebar.selectbox(
     "Select stabilization method:",
-    ("Optical Flow", "Block Matching", "Bitplane Matching", "L1 Optimal Paths")
+    ("Optical Flow", "Block Matching", "Bitplane Matching", "L1 Optimal Paths", "Mesh Flow")
 )
 
 # Show sliders for method-specific arguments
@@ -61,6 +62,11 @@ with st.sidebar.expander("Options",expanded=False):
 
     elif method == "L1 Optimal Paths":
         crop_ratio = st.slider("Crop Ratio", min_value=0.5, max_value=1.0, value=0.8, step=0.05)
+    elif method == "Mesh Flow":
+    mesh_size = st.slider("Mesh Size", min_value=4, max_value=64, value=16, step=4)
+    smoothing_radius = st.slider("Smoothing Radius", min_value=5, max_value=100, value=50, step=5)
+    scale = st.slider("Scale", min_value=1.0, max_value=2.0, value=1.04, step=0.01)
+
         
 if uploaded_file is not None:
     # Save uploaded file to a temp file
@@ -119,6 +125,14 @@ if uploaded_file is not None:
                 smoothing_radius=smoothing_radius, 
                 scale=scale
             )
+        elif method == "Mesh Flow":
+            start_time = time.time()
+            output_path = mesh_flow(
+                input_path,
+                output_filename,
+                mesh_size=mesh_size,
+                smoothing_radius=smoothing_radius,
+                scale=scale)
 
         elif method == "L1 Optimal Paths":
             start_time = time.time()
