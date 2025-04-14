@@ -63,9 +63,9 @@ with st.sidebar.expander("Options",expanded=False):
     elif method == "L1 Optimal Paths":
         crop_ratio = st.slider("Crop Ratio", min_value=0.5, max_value=1.0, value=0.8, step=0.05)
     elif method == "Mesh Flow":
-    mesh_size = st.slider("Mesh Size", min_value=4, max_value=64, value=16, step=4)
-    smoothing_radius = st.slider("Smoothing Radius", min_value=5, max_value=100, value=50, step=5)
-    scale = st.slider("Scale", min_value=1.0, max_value=2.0, value=1.04, step=0.01)
+        mesh_size = st.slider("Mesh Size", min_value=4, max_value=64, value=16, step=4)
+        smoothing_radius = st.slider("Smoothing Radius", min_value=5, max_value=100, value=50, step=5)
+        scale = st.slider("Scale", min_value=1.0, max_value=2.0, value=1.04, step=0.01)
 
         
 if uploaded_file is not None:
