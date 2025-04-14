@@ -116,7 +116,7 @@ def mesh_flow(input_video, output_filename, mesh_size=16, smoothing_radius=50, s
 
     # Mesh grid creation
     def create_mesh_grid(frame_shape, mesh_size):
-        h, w = frame_shape
+        h, w = frame_shape[:2]  # Only take the height and width
         mesh = []
         for y in range(0, h, mesh_size):
             for x in range(0, w, mesh_size):
