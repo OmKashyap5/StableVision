@@ -7,7 +7,7 @@ from classical.optical_flow.optical_flow import optical_flow
 from classical.block_matching.block_matching import block_matching
 from classical.bitplane_matching.bitplane_matching import bitplane_matching
 from classical.l1_optimal_paths.l1_optimal_paths import l1_optimal_stabilization
-from classical.mesh_flow import mesh_flow
+from classical.meshflow import mesh_flow
 
 st.title("Stable Vision")
 
